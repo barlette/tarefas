@@ -1,37 +1,25 @@
 import Tarefa from '../model/Tarefa';
 import tarefasIniciais from '../data/mock';
-
+import Selecao from '../components/lista/Selecao';
+import ListaItem from '../components/lista/ListaItem';
+import Lista from '../components/lista/Lista';
+import { useState } from 'react';
 export default function Home() {
-  let tarefas = tarefasIniciais;
-
-  function renderizarTarefas() {
-    return tarefas.itens.map((tarefa) => {
-      return (
-        <div key={tarefa.id}>
-          <span>{tarefa.id} | </span>
-          <span>{tarefa.descricao} | </span>
-          <span>{tarefa.concluida ? 'Concluída' : 'Ativa'}</span>
-        </div>
-      );
-    });
-  }
+  const [tarefas, setTarefas] = useState(tarefasIniciais);
 
   return (
     <div
       className={`
-      flex
-      flex-col
-      justify-center
-      items-center
-      text-white
-      bg-purple-600
-      h-screen
-      bg-gradient-to-tr
-      from-purple-500
-      to-yellow-600
+      flex flex-col justify-center items-center h-screen
+      bg-gray-300
     `}
     >
-      {renderizarTarefas()}
+      <Lista
+        tarefas={tarefas}
+        mudou={(novasTarefas) => {
+          setTarefas(novasTarefas);
+        }}
+      />
     </div>
   );
 }
