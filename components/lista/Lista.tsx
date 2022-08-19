@@ -1,5 +1,7 @@
 import ListaTarefas from '../../model/ListaTarefas';
 import ListaItem from './ListaItem';
+import ListaBotao from './ListaBotao';
+import ListaRodape from './ListaRodape';
 
 interface ListaProps {
   tarefas: ListaTarefas;
@@ -28,7 +30,7 @@ export default function Lista(props: ListaProps) {
   return (
     <div
       className={`
-            flex w-3/5
+            flex w-3/5 items-start
         `}
     >
       <ul
@@ -39,6 +41,7 @@ export default function Lista(props: ListaProps) {
       `}
       >
         {renderizarTarefas()}
+        <ListaRodape tarefas={props.tarefas} mudou={props.mudou} />
       </ul>
     </div>
   );
